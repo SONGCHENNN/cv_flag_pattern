@@ -1,0 +1,12 @@
+train: images/train
+val: images/val
+
+nc: 1
+names: ['flag-pattern']
+
+roboflow:
+  workspace: edge-computing-fh4lu
+  project: edge-computing-fh4lu
+  version: dataset
+  license: Private
+  url: https://app.roboflow.com/edge-computing-fh4lu/edge-computing-fh4lu/dataset

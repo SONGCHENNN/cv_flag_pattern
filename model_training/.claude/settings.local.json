@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(head *)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\yeosc\\\\Downloads\\\\flag_pattern\" -Recurse -Force | Where-Object { !$_.PSIsContainer } | Select-Object FullName, @{N='Size\\(KB\\)';E={[math]::Round\\($_.Length/1KB,1\\)}} | Sort-Object FullName)"
+    ]
+  }
+}

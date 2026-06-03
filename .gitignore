@@ -6,3 +6,14 @@ __pycache__/
 *.pyc
 cookies.json
 screenshots/
+
+# Secrets
+.env
+
+# Model training data & outputs
+model_training/screenshots/
+model_training/flag_screenshots/
+model_training/flag_labels/
+model_training/models/
+model_training/images/
+model_training/labels/

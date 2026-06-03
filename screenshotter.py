@@ -29,10 +29,17 @@ CHART_SELECTOR = "#tv-attr-logo"   # fallback anchor — see note in take_screen
 def load_cookies(context):
     if not os.path.exists(COOKIES_FILE):
         raise FileNotFoundError(
-            f"{COOKIES_FILE} not found. Run setup_session.py first."
+            f"{COOKIES_FILE} not found. Export cookies from Cookie-Editor first."
         )
     with open(COOKIES_FILE) as f:
         cookies = json.load(f)
+    
+    # Sanitize sameSite values — Cookie-Editor uses different format than Playwright
+    valid_same_site = {"Strict", "Lax", "None"}
+    for cookie in cookies:
+        if "sameSite" not in cookie or cookie["sameSite"] not in valid_same_site:
+            cookie["sameSite"] = "Lax"  # safe default
+    
     context.add_cookies(cookies)
     print(f"Loaded {len(cookies)} cookies from {COOKIES_FILE}")
 
@@ -128,7 +135,7 @@ def run():
 
         page = context.new_page()
         print(f"Navigating to {TV_CHART_URL}")
-        page.goto(TV_CHART_URL, wait_until="networkidle")
+        page.goto(TV_CHART_URL, wait_until="domcontentloaded", timeout=60000)
 
         wait_for_chart(page)
         dismiss_popups(page)

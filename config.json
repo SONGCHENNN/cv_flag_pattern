@@ -1,0 +1,9 @@
+{
+  "area": {
+    "x1": 51,
+    "y1": 136,
+    "x2": 1428,
+    "y2": 990
+  },
+  "model_path": "C:/Users/yeosc/Downloads/flag_pattern/model_training/models/yolo26s_v1.pt"
+}
